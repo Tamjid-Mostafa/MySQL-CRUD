@@ -19,6 +19,7 @@ console.log(userId);
           .then((res) => {
               if (res.status === 200) {
                   hitToast('success', res.data.message);
+                  refetch()
               }
           })
           .catch((err) => {
@@ -44,8 +45,8 @@ console.log(userId);
         const dlt = await axios.delete(`https://mysql-crud-server.vercel.app/users/${id}`);
         if(dlt.status === 200) {
             hitToast('error', dlt.data.message)
+            refetch()
         }
-        refetch()
     } catch (error) {
         console.log(error)
         
@@ -59,14 +60,15 @@ console.log(userId);
         console.log(update)
         if(update.status === 200) {
             hitToast('success', update.data.message)
+            refetch()
         }
-        refetch()
     } catch (error) {
         console.log(error)
         
     }
   }
 
+  
   return (
     <div className="App flex flex-col items-center justify-center w-[100vw]">
       <Form

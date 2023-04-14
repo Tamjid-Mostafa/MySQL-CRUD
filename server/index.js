@@ -7,13 +7,15 @@ app.use(cors());
 app.use(express.json());
 
 const db = createPool({
+  port: process.env.DB_PORT,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0,
+  queueLimit: 2,
+
 });
 
 db.getConnection((err, connection) => {
@@ -69,6 +71,6 @@ app.put("/users/:id", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}!`);
+app.listen(3300, () => {
+  console.log(`Example app listening on port ${3300}!`);
 });

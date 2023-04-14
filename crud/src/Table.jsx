@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LoadingDots from './LoadingDots/LoadingDots'
 const Table = ({ handleDelete, data, refetch, first, setFirst, setUserId, isLoading }) => {
 
+    if(data?.length === 0 ) return "There is no data"
 
     return (
         <div className="flex flex-col w-[70vw]">
@@ -50,7 +51,7 @@ const Table = ({ handleDelete, data, refetch, first, setFirst, setUserId, isLoad
                             </thead>
                             <tbody className="divide-y divide-gray-200">
                                 {
-                                    data.map((item, i) => (
+                                    data?.map((item, i) => (
                                         <tr key={item.id}>
                                             <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
                                                 {item.id}
@@ -86,6 +87,7 @@ const Table = ({ handleDelete, data, refetch, first, setFirst, setUserId, isLoad
                                             </td>
                                         </tr>
                                     ))
+
                                 }
                             </tbody>
                         </table>
